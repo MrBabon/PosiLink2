@@ -33,6 +33,14 @@ gem "redis", "~> 4.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
+############ GEM RAJOUTÉE #############
+gem "pundit"
+gem "rails_admin", "3.0"
+gem "pg_search"
+gem "simple_calendar", "~> 2.4"
+gem "geocoder"
+########################################
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 

@@ -1,0 +1,62 @@
+<% content_for :meta_title, "#{@organization.name} • Posilink" %>
+<% content_for :meta_description, "Les derniers évènements de #{@organization.name}" %>
+<% content_for :meta_image, cl_image_path(@organization.photo.key) %>
+
+
+<div class="organization-banner">
+  <section class="dark">
+    <div class="container py-4">
+      <article class="postcard dark blue ">
+        <a class="postcard__img_link" href="#">
+          <img class="postcard__img" src="<%= cl_image_path @organization.photo.key %>" alt="Image Title" />
+        </a>
+        <div class="postcard__text">
+          <h1 class="postcard__title blue"><a href="#"> <%= @organization.name %></a></h1>
+          <div class="postcard__subtitle small"></div>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt"> <%= @organization.description %></div>
+          <ul class="postcard__tagbox">
+            <li class="tag__item"><i class="fas fa-tag mr-2"></i><%= @organization.address %></li>
+            <li class="tag__item"><a href="tel:<%= @organization.phone_number %>"><i class="fas fa-phone mr-2"></i><%= @organization.phone_number %></a></li>
+            <li class="tag__item"><a href="mailto:<%= @organization.email %>"> <i class="fas fa-envelope mr-2"></i><%= @organization.email %></a></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+  <div class="container">
+    <div class="btn-wrap">
+      <div class='btn-left'>
+        <div class='prev-wrap'>
+          <%= link_to :back do %>
+            <div class="btn-test"><i class="fa fa-angle-left"></i> Précédent </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 class="mb-5"> Nos <span class="phrase-couleur">événements</span></h2>
+  <div class="container-orga">
+    <div class="cards-orga">
+      <% @events.each do |event| %>
+                <div class="card card-ac">
+                    <img src="<%= cl_image_path event.photo.key %>" alt="Événement" class="object-fit-cover img-fluid">
+                  <div class="card-body">
+                      <p class="date-start">Le <%= event.date.strftime('%d %m %y') %><p>
+                      <h3 class="card-title titre-carte"><%= event.title %></h3>   
+                  </div>
+                  <p class="para-card">Adresse</p>
+                  <p class="para-card"><%= event.address %></p>
+                  <div class="card-bottom">
+                    <a class="bouton-ac" onclick="window.location.href='<%= event_path(event) %>'">Voir plus <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                </div>
+      <% end %>
+    </div>
+    <div id="map-event"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
