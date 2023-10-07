@@ -49,11 +49,9 @@
             <div class="col-xl-4 col-md-6 pb-4">
               <div class="card card-ac">
                 <div class="photo-taille-ac">
-                  <% if organization.photo.present? %>
-                    <img src="<%= cl_image_path organization.photo.key %>" alt="association" class="object-fit-cover img-fluid">
-                  <% else %>
-                    <img src="<%= cl_image_path organization.picture %>" alt="association" class="object-fit-cover img-fluid">
-                  <% end %>                
+                  <% if organization.avatar.present? %>
+                    <img src="<%= image_path organization.avatar %>" alt="association" class="object-fit-cover img-fluid">
+                  <% end %>
                 </div>
                 <div class="card-body">
                   <h3 class="card-title titre-carte"><%= organization.name.upcase %></h3>
