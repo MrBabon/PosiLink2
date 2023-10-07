@@ -1,0 +1,6 @@
+{
+    "imports": {
+      "stimulus": "stimulus",
+      "stimulus/streams": "stimulus/streams"
+    }
+  }
