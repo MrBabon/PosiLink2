@@ -31,15 +31,18 @@ RailsAdmin.config do |config|
       field :address
       field :phone
       field :description
-      field :avatar do
-        pretty_value do
-          if bindings[:object].avatar.attached?
-            bindings[:object].avatar.key
-          else
-            "Aucune image"
-          end
-        end
-      end
+      # field :avatar do
+      #   pretty_value do
+      #     if bindings[:object].avatar.attached?
+      #       image_tag bindings[:object].avatar.service_url
+      #     else
+      #       "Aucune image"
+      #     end
+      #   end
+      #   formatted_value do
+      #     bindings[:view].tag(:img, { src: bindings[:object].avatar.service_url, style: "max-width: 100px; max-height: 100px;" }) if bindings[:object].avatar.attached?
+      #   end
+      # end
       field :avatar, :active_storage
     end
   end
