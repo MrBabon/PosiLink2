@@ -10,6 +10,7 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         @participation = Participation.participation_for(current_user, @event)
         @marker = map_view(@event)
+        authorize @event
     end
     
     private

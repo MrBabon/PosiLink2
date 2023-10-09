@@ -24,7 +24,7 @@
               <% rotation_degrees = index.even? ? 10 : -10 %>
               < class="event-card" style="transform: rotate(<%= rotation_degrees %>deg);">
                 <h2><%= event.organization.name %></h2>
-                <img src="<%= cl_image_path event.photo.key %>" alt="<%= event.title %>">
+
                 <h2><%= event.title %></h2>
                 <p><%= event.start_time.strftime("%d-%m-%Y") %></p>
                 <%= link_to event.title, organization_event_path(event.organization, event), class: "button" %>
@@ -50,7 +50,7 @@
               <div class="card card-ac">
                 <div class="photo-taille-ac">
                   <% if organization.avatar.present? %>
-                    <img src="<%= image_path organization.avatar %>" alt="association" class="object-fit-cover img-fluid">
+                    <img src="<%= rails_blob_path(organization.avatar, disposition: "attachment") %>" alt="association <%= organization.name %>" class="object-fit-cover img-fluid">
                   <% end %>
                 </div>
                 <div class="card-body">

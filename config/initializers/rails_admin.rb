@@ -15,11 +15,39 @@ RailsAdmin.config do |config|
       redirect_to main_app.root_path
     end
   end
-  ## == CancanCan ==
-  # config.authorize_with :cancancan
 
   ## == Pundit ==
   # config.authorize_with :pundit
+
+  config.model 'Organization' do
+    edit do
+      field :name
+      field :category do
+        formatted_value do
+          bindings[:object].category_form_value
+        end
+      end
+      field :email
+      field :address
+      field :phone
+      field :description
+      field :avatar do
+        pretty_value do
+          if bindings[:object].avatar.attached?
+            bindings[:object].avatar.key
+          else
+            "Aucune image"
+          end
+        end
+      end
+      field :avatar, :active_storage
+    end
+  end
+  
+
+  ## == CancanCan ==
+  # config.authorize_with :cancancan
+
 
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0

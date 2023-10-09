@@ -1,4 +1,4 @@
-class OrganizationPolicy < ApplicationPolicy
+class EventPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -6,13 +6,6 @@ class OrganizationPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    user.admin?
-  end
-
-  def index?
-    true
-  end
 
   def show?
     true

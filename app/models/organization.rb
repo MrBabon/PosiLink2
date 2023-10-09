@@ -1,5 +1,17 @@
 class Organization < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
+  has_one_attached :avatar
+
+  enum category: {
+    ecologie: "écologie",
+    culture: "culture",
+    sport: "sport",
+    sante: "santé",
+    education: "éducation",
+    humanitaire: "humanitaire"
+  }
+  validates :category, inclusion: { in: categories.keys, message: "Catégorie invalide" }
+  
 
   include PgSearch::Model
   pg_search_scope :search_by_organization,
@@ -7,4 +19,8 @@ class Organization < ApplicationRecord
                   using: {
                       tsearch: { prefix: true }
                   }
+
+  def category_form_value
+    self.class.categories.key(category) || category
+  end
 end

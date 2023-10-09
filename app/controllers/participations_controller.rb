@@ -3,6 +3,7 @@ class ParticipationsController < ApplicationController
     before_action :set_participation, only: [:destroy]
 
     def show
+        authorize @participation
     end
 
     def create
@@ -10,6 +11,7 @@ class ParticipationsController < ApplicationController
         @participation.user = current_user
         @participation.save
         redirect_to event_path(@event)
+        authorize @participation
     end
 
     def destroy
@@ -17,6 +19,7 @@ class ParticipationsController < ApplicationController
         @participation.destroy
         redirect_to event_path(@event)
         flash[:notice] = "Votre inscription a été supprimée avec succès."
+        authorize @participation
     end
     private
 

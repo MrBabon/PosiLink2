@@ -1,20 +1,20 @@
 <% content_for :meta_title, "#{@organization.name} • Posilink" %>
 <% content_for :meta_description, "Les derniers évènements de #{@organization.name}" %>
-<% content_for :meta_image, image_path(@organization.avatar) %>
+<% content_for :meta_image, rails_blob_path(@organization.avatar, disposition: "attachment") %>
 
 
 <div class="organization-banner">
   <section class="dark">
     <div class="container py-4">
       <article class="postcard dark blue ">
-        <a class="postcard__img_link" href="#">
-          <img class="postcard__img" src="<%= image_path @organization.avatar %>" alt="Image Title" />
-        </a>
+        <div class="postcard__img_link" href="#">
+          <img class="postcard__img" src="<%= rails_blob_path(@organization.avatar, disposition: "attachment") %>" alt="Image <%= @organization.name %>" />
+        </div>
         <div class="postcard__text">
-          <h1 class="postcard__title blue"><a href="#"> <%= @organization.name %></a></h1>
+          <h1 class="postcard__title blue"> <%= @organization.name %></h1>
           <div class="postcard__subtitle small"></div>
           <div class="postcard__bar"></div>
-          <div class="postcard__preview-txt"> <%= @organization.description %></div>
+          <div class=""> <%= @organization.description %></div>
           <ul class="postcard__tagbox">
             <li class="tag__item"><i class="fas fa-tag mr-2"></i><%= @organization.address %></li>
             <li class="tag__item"><a href="tel:<%= @organization.phone %>"><i class="fas fa-phone mr-2"></i><%= @organization.phone %></a></li>
@@ -40,9 +40,8 @@
     <div class="cards-orga">
       <% @events.each do |event| %>
                 <div class="card card-ac">
-                    <img src="<%= cl_image_path event.photo.key %>" alt="Événement" class="object-fit-cover img-fluid">
                   <div class="card-body">
-                      <p class="date-start">Le <%= event.date.strftime('%d %m %y') %><p>
+                      <p class="date-start">Le <%= event.start_time.strftime('%d %m %y') %><p>
                       <h3 class="card-title titre-carte"><%= event.title %></h3>   
                   </div>
                   <p class="para-card">Adresse</p>

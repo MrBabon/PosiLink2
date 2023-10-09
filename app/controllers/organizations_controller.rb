@@ -6,7 +6,7 @@ class OrganizationsController < ApplicationController
             @organizations = Organization.all
         end
         params[:query] = ""
-        @organizations = policy_scope(Organization)
+        @filtered_organizations = policy_scope(Organization)
     end
 
     def show

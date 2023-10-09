@@ -29,7 +29,8 @@ class UsersController < ApplicationController
     end
 
     def my_events
-        @participating_events = @user.events
+      authorize @user
+      @participating_events = @user.events
     end
 
     private
