@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
+  has_many :directors, dependent: :destroy
+  has_many :users, through: :directors
   has_many :events, dependent: :destroy
   has_one_attached :avatar
 
@@ -23,4 +25,5 @@ class Organization < ApplicationRecord
   def category_form_value
     self.class.categories.key(category) || category
   end
+
 end

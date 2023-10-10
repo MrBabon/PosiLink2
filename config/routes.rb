@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   ######### ORGANIZATION ##########
   resources :organizations do
     resources :events, only: [:index, :show]
-    # member do
+    member do
+      post 'create_event', to: 'organizations#create_event'
     #   post 'follow'           #### FOLLOW EN COURS ####
     #   delete 'unfollow'
-    # end  
+    end  
   end
   #################################
   ############ EVENT ##############

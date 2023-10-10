@@ -10,6 +10,19 @@ class OrganizationPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def create_event?
+    user.admin? || (user.director? && user.organizations.include?(record))
+  end
+
+  def edit?
+    user.admin? || user.director?
+  end
+
+  def update?
+    # Vérifiez si l'utilisateur est un directeur de cette organisation
+    user.directors.exists?(organization: record)
+  end
+
   def index?
     true
   end

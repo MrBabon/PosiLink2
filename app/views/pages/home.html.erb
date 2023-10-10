@@ -23,6 +23,16 @@
                   <div class="button__drow2"></div>
                 <% end %>
               </div>
+            <% elsif current_user.director? %>
+              <div class="d-flex mt-5">
+                <%= link_to edit_organization_path(@organization), class:"button" do %>
+                  <div class="button__line"></div>
+                  <div class="button__line"></div>
+                  <span class="button__text">MON ASSOCIATION</span>
+                  <div class="button__drow1"></div>
+                  <div class="button__drow2"></div>
+                <% end %>
+              </div>
             <% else %>
               <div class="d-flex mt-5">
                 <%= link_to organizations_path, class:"button" do %>

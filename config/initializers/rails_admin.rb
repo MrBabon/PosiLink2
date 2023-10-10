@@ -15,21 +15,30 @@ RailsAdmin.config do |config|
       redirect_to main_app.root_path
     end
   end
+  ###################################
 
   ## == Pundit ==
   # config.authorize_with :pundit
 
+  ## == Rails_admin == 
   config.model 'Organization' do
     edit do
-      field :name
+      field :name do
+        label "Nom de l'association"
+      end
       field :category do
+        label "Catégorie"
         formatted_value do
           bindings[:object].category_form_value
         end
       end
       field :email
-      field :address
-      field :phone
+      field :address do
+        label "Adresse de l'association"
+      end
+      field :phone do
+        label "Téléphone"
+      end
       field :description
       field :avatar, :active_storage
     end
@@ -37,16 +46,26 @@ RailsAdmin.config do |config|
 
   config.model 'Event' do
     edit do
-      field :title
-      field :organization
-      field :address
+      field :title do
+        label "Titre"
+      end
+      field :organization do
+        label "Association"
+      end
+      field :address do
+        label "Adresse de l'évènement"
+      end
       field :description
-      field :start_time
-      field :end_time
+      field :start_time do
+        label "Début de l'évènement"
+      end
+      field :end_time do
+        label "Fin de l'évènement"
+      end
       field :picture, :active_storage
     end
   end
-  
+  ####################################
 
   ## == CancanCan ==
   # config.authorize_with :cancancan

@@ -6,7 +6,10 @@ class EventPolicy < ApplicationPolicy
     end
   end
 
-
+  def create?
+    user.admin? || user.director?
+  end
+  
   def show?
     true
   end
