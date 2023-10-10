@@ -44,7 +44,6 @@ class OrganizationsController < ApplicationController
   def create_event
     @organization = Organization.find(params[:id])
     @event = @organization.events.build(event_params)
-
     authorize @event, :create?
     if @event.save
       redirect_to @organization, notice: "Événement créé avec succès."
