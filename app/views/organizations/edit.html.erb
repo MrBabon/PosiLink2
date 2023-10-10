@@ -41,14 +41,33 @@
     <section>
         <h2>Événements de l'association</h2>
         <% if @events.any? %>
-            <ul>
-                <% @events.each do |event| %>
-                    <li><%= event.title %> - <%= event.start_time %></li>
-                <% end %>
-            </ul>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @events.each do |event| %>
+                        <tr>
+                        <td><%= event.title %></td>
+                        <td><%= event.start_time&.strftime('%d.%m à %H:%M') %></td>
+                        <td><%= event.end_time&.strftime('%d.%m à %H:%M') %></td>
+                        <td>
+                            <%= link_to 'Modifier', edit_organization_path(@organization, event), class: 'btn btn-primary btn-sm' %>
+                            <%= link_to 'Supprimer', edit_organization_path(@organization, event), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet événement ?' }, class: 'btn btn-danger' %>
+                        </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
         <% else %>
             <p>Aucun événement trouvé pour cette association.</p>
         <% end %>
+
         <h2>Créer un nouvel événement</h2>
         <%= form_for(@new_event, url: create_event_organization_path(@organization), method: :post, html: { multipart: true }) do |f| %>
             <div class="form-group">

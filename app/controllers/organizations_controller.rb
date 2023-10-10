@@ -41,6 +41,8 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  ######### POUR GESTION DES EVENTS ##########
+
   def create_event
     @organization = Organization.find(params[:id])
     @event = @organization.events.build(event_params)
@@ -52,6 +54,33 @@ class OrganizationsController < ApplicationController
       render :edit
     end
   end
+
+  def update_event
+    @organization = Organization.find(params[:id])
+    @event = Event.find(params[:event_id]) # Remarquez que nous récupérons l'event_id depuis les paramètres
+
+    authorize @event, :update? # Assurez-vous d'autoriser l'utilisateur à effectuer cette action
+
+    if @event.update(event_params)
+      redirect_to @organization, notice: "Événement mis à jour avec succès."
+    else
+      render :edit
+    end
+  end
+
+  def destroy_event
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:event_id])
+
+    authorize @event, :destroy?
+
+    if @event.destroy
+      redirect_to edit_organization_path(@organization), notice: "Événement supprimé avec succès."
+    else
+      render :edit
+    end
+  end
+  ####################################################
 
   private
 

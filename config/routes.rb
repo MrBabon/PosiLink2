@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :show]
     member do
       post 'create_event', to: 'organizations#create_event'
+      patch 'update_event/:event_id', to: 'organizations#update_event', as: 'update_event'
+      delete 'destroy_event/:event_id', to: 'organizations#destroy_event', as: 'destroy_event'
     #   post 'follow'           #### FOLLOW EN COURS ####
     #   delete 'unfollow'
     end  
