@@ -28,10 +28,15 @@
     <div class="btn-wrap">
       <div class='btn-left'>
         <div class='prev-wrap'>
-          <%= link_to :back do %>
-            <div class="btn-test"><i class="fa fa-angle-left"></i> Précédent </div>
+          <%= link_to :back, class: "btn-test" do %>
+            <i class="fa fa-angle-left"></i> Précédent
           <% end %>
         </div>
+          <% if @organization.directors.present? && current_user == @organization.directors.first.user %>
+            <%= link_to edit_organization_path(@organization), class: "bouton-ac" do %>
+              Modifier mon association
+            <% end %>
+          <% end %>
       </div>
     </div>
   </div>
@@ -42,7 +47,7 @@
                 <div class="card card-ac">
                   <img src="<%= rails_blob_path event.picture %>" alt="Événement" class="object-fit-cover img-fluid">
                   <div class="card-body">
-                      <p class="date-start">Le <%= event.start_time.strftime('%d %m %Y de %H:%M') %> à <%= event.end_time.strftime('%H:%M')%><p>
+                      <p class="date-start">Le <%= event.start_time.strftime('%d %m %Y') %><br>de <%= event.start_time.strftime('%H:%M')%> à <%= event.end_time.strftime('%H:%M')%><p>
                       <h3 class="card-title titre-carte"><%= event.title %></h3>   
                   </div>
                   <p class="para-card">Adresse</p>
