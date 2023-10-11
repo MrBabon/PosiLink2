@@ -10,6 +10,10 @@ class EventPolicy < ApplicationPolicy
     user.admin? || user.director?
   end
 
+  def edit
+    user.admin? || user.director?
+  end
+
   def update?
     user.admin? || user.director?
   end

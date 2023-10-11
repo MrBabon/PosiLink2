@@ -11,3 +11,21 @@
   flex-direction: column;
   justify-content: center;
 }
+
+
+.read-more {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-content {
+  overflow: hidden;
+  max-height: 75px; /* Ajustez la hauteur maximale comme souhaité */
+  transition: max-height 0.2s ease-in;
+}
+
+/* Lorsque la classe "expanded" est présente, affichez tout le contenu */
+.my-content.expanded  {
+  max-height: none;
+  transition: max-height 0.2s ease-out;
+}

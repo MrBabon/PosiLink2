@@ -7,6 +7,9 @@ class OrganizationsController < ApplicationController
           @organizations = Organization.all
       end
       params[:query] = ""
+      if user_signed_in? && current_user.director?
+        @organization = current_user.organizations.first
+      end
       @filtered_organizations = policy_scope(Organization)
   end
 
@@ -26,6 +29,7 @@ class OrganizationsController < ApplicationController
   def edit
     @organization = Organization.find(params[:id])
     @events = @organization.events
+
     @new_event = @organization.events.build
     authorize @organization
   end
@@ -68,18 +72,6 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def destroy_event
-    @organization = Organization.find(params[:organization_id])
-    @event = Event.find(params[:event_id])
-
-    authorize @event, :destroy?
-
-    if @event.destroy
-      redirect_to edit_organization_path(@organization), notice: "Événement supprimé avec succès."
-    else
-      render :edit
-    end
-  end
   ####################################################
 
   private

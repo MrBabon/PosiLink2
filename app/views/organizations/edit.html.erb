@@ -39,12 +39,13 @@
     </section>
     <br>
     <section>
-        <h2>Événements de l'association</h2>
-        <% if @events.any? %>
+        <% if @events.any? { |event| event.id.present? } %>
+            <h2>Événements de l'association</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Titre</th>
+                        <th>Article</th>
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Actions</th>
@@ -52,15 +53,25 @@
                 </thead>
                 <tbody>
                     <% @events.each do |event| %>
-                        <tr>
-                        <td><%= event.title %></td>
-                        <td><%= event.start_time&.strftime('%d.%m à %H:%M') %></td>
-                        <td><%= event.end_time&.strftime('%d.%m à %H:%M') %></td>
-                        <td>
-                            <%= link_to 'Modifier', edit_organization_path(@organization, event), class: 'btn btn-primary btn-sm' %>
-                            <%= link_to 'Supprimer', edit_organization_path(@organization, event), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cet événement ?' }, class: 'btn btn-danger' %>
-                        </td>
-                        </tr>
+                        <% if event.id.present? %>
+                            <tr>
+                            <td><%= event.title.truncate(20, omission: '..') %></td>
+                            <td><%= event.articles.count %></th>
+                            <td><%= event.start_time&.strftime('%d.%m à %H:%M') %></td>
+                            <td><%= event.end_time&.strftime('%d.%m à %H:%M') %></td>
+                            <td>
+                                <%= link_to edit_organization_event_path(@organization, event), class: 'btn btn-primary btn-sm' do %>
+                                    <i class="fa-solid fa-circle-info"></i>
+                                <% end %>
+                                <%= link_to new_organization_event_article_path(@organization, event), class: 'btn btn-primary' do %>
+                                    <i class="fa-regular fa-newspaper"></i>
+                                <% end %>
+                                <%= link_to organization_event_path(@organization, event), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Vous êtes sûr?"}, class: 'btn btn-danger' do %>
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                <% end %>
+                            </td>
+                            </tr>
+                        <% end %>
                     <% end %>
                 </tbody>
             </table>

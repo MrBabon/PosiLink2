@@ -36,6 +36,11 @@
     </div>
   </div> -->
   <!-- SCROLL X END -->
+  <% if current_user.director? %>
+    <%= link_to edit_organization_path(@organization), class:"button" do %>
+      Voir mon association
+    <% end %>
+  <% end %>
   <div class='bp-index-container mt-2'>
     <h1 class="titre-bold pb-2">TOUS NOS <span class="phrase-couleur">PARTENAIRES</span> <br>ASSOCIATIFS </h1>
     <div class="container">
