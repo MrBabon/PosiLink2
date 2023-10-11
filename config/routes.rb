@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   #################################
   ######### ORGANIZATION ##########
   resources :organizations do
-    resources :events, only: [:index, :show]
+    resources :events do
+      resources :articles, only: [:new, :create]
+    end
     member do
       post 'create_event', to: 'organizations#create_event'
     #   post 'follow'           #### FOLLOW EN COURS ####

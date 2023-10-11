@@ -9,6 +9,18 @@ class EventPolicy < ApplicationPolicy
   def create?
     user.admin? || user.director?
   end
+
+  def edit
+    user.admin? || user.director?
+  end
+
+  def update?
+    user.admin? || user.director?
+  end
+
+  def destroy?
+    user.admin? || user.director?
+  end
   
   def show?
     true

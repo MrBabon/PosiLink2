@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     def show
       authorize @user
       @participations = Participation.where(user_id: @user.id).includes(:event)
-      @participations_by_date = @participations.group_by { |p| p.event.date.to_date }
+      @participations_by_date = @participations.group_by { |p| p.event.start_time.to_date }
       # @followed_organizations = @user.following
     end
 
