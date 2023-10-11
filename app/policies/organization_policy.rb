@@ -19,7 +19,6 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def update?
-    # Vérifiez si l'utilisateur est un directeur de cette organisation
     user.directors.exists?(organization: record)
   end
 
