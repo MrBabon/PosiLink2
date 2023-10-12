@@ -20,10 +20,10 @@
 
     <% if @participation %>
       <% if @event.articles.any? %>
-        <div class="article-card" data-controller="read-more">
+        <div class="article-card">
           <h2>Articles</h2>
           <% @event.articles.each do |article| %>
-            <div class="card-event"  data-read-more-more-text-value="Lire plus" data-read-more-less-text-value="Lire moins">
+            <div class="card-event" data-controller="read-more" data-read-more-more-text-value="Lire plus" data-read-more-less-text-value="Lire moins">
               <h3><strong><%= article.title %></strong></h3>
               <p class="my-content" data-read-more-target="content"><%= sanitize article.content %></p>
               <div class="read-more">
