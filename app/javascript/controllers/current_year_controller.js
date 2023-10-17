@@ -5,9 +5,6 @@ export default class extends Controller {
   static targets = ["year"]
 
   connect() {
-    console.log("Controller is connected");
-    const currentYear = new Date().getFullYear();
-    console.log("Current Year:", currentYear);
-    this.yearTarget.textContent = currentYear;
+    this.yearTarget.textContent = new Date().getFullYear();
   }
 }
