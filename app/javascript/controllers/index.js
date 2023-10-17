@@ -17,6 +17,9 @@ application.register("scroll", ScrollController)
 
 import ReadMoreController from "./read_more_controller"
 application.register("read-more", ReadMoreController)
+
+import CurrentYearController from "./current_year_controller"
+application.register("current-year", CurrentYearController)
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
