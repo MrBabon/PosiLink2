@@ -9,6 +9,7 @@ class User < ApplicationRecord
   ##################################################
 
   ############ VALIDATION ############
+  has_one_attached :avatar
   validates :nickname, presence: true, format: { without: /\s/ }
   ####################################
 

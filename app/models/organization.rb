@@ -17,7 +17,7 @@ class Organization < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_organization,
-                  against: [:name, :category],
+                  against: [:name, :category, :description],
                   using: {
                       tsearch: { prefix: true }
                   }

@@ -39,6 +39,8 @@ gem "rails_admin", "3.0"
 gem "pg_search"
 gem "simple_calendar", "~> 2.4"
 gem "geocoder"
+gem "mailcatcher", group: :development
+
 ########################################
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
