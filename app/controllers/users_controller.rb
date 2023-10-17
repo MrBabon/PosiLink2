@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
 
     def edit
+      authorize @user
     end
 
     def update
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
         else
         render :edit
         end
+        authorize @user
     end
 
     def update_avatar

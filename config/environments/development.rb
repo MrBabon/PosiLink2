@@ -4,6 +4,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ######### ATTENTION CECI ET POUR LE DEVELOPMENT POUR TEST L'ENVOI DE MAIL
+  ######### UNE FOIS LE SITE FINI BIEN PRÉVOIR DE METTRE À JOUR LE SNTP COTÉ PRODUCTION
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
+  #####################################################################################  
+  #####################################################################################
+   
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

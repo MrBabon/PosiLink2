@@ -13,4 +13,12 @@ class UserPolicy < ApplicationPolicy
   def my_events?
     true    
   end
+
+  def update?
+    user.admin? || user == record
+  end
+  
+  def edit?
+    true
+  end
 end

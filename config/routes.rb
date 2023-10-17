@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact_forms/new'
+  get 'contact_forms/create'
   root to: "pages#home"
   
   ############# DEVISE ############
@@ -10,6 +12,9 @@ Rails.application.routes.draw do
   # authenticate :user, ->(user) { user.admin? } do  ##### PAS SÛR DE LE METTRE #####
   #   mount Blazer::Engine, at: "blazer"
   # end
+  #################################
+  ############ CONTACT ############
+  resources :contact_forms, only: [:new, :create]
   #################################
   ############# USER ##############
   resources :users, only: [:show, :edit, :update] do
